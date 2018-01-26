@@ -1,15 +1,24 @@
-import React from 'react';
+
+//import React libraries
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import SearchBox from './components/search_box';     //location of the search_box.js file
 
-import App from './components/app';
-import reducers from './reducers';
+//create a new component to produce some html content/elements/tags etc
+//generate html and put it on the page (in the DOM)
+const App = () => {
+    return (
+    <div>
+         <SearchBox /> 
+    </div>);
+}
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+//Youtube API
+const YoutubeAPIKey = 'AIzaSyDtoiYBQU9pMe-AFGHRFSgrDZD_8fHv0ek'
+//get the key from console.developer.google.com, search for API name: youtube data API v3
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+/*const App = function() {
+    return <div> Hi first </div>
+} */
+ReactDOM.render(<App />, document.querySelector('.container'));
+
