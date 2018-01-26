@@ -16,14 +16,18 @@ class SearchBox extends Component {
 
     render() {      //the way we define a method in a class
         return (
-            <div>                
+            <div className="searchBox">                
                 <input value = {this.state.term}    //controlled component
-                onChange={(event) => this.setState({term: event.target.value})} placeholder = 'input your search here' />
-                <h3>Value of the input: {this.state.term} </h3>
+                onChange={(event) => this.onInputChange(event.target.value)} placeholder = 'input your search here' />
+                
             </div>
         )
     }   //the arrow function syntax in ES6
 
+    onInputChange(term) {
+        this.setState({term})
+        this.props.onSearchTermChange(term)
+    }
     /*event handling
     onInputChange(event) {   //input changes from <input > with event or eventObject
         console.log(event.target.value) 
