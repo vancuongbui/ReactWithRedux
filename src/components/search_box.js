@@ -16,7 +16,7 @@ class SearchBox extends Component {
 
     render() {      //the way we define a method in a class
         return (
-            <div className="searchBox">                
+            <div className="container searchBox">                
                 <input value = {this.state.term}    //controlled component
                 onChange={(event) => this.onInputChange(event.target.value)} placeholder = 'input your search here' />
                 

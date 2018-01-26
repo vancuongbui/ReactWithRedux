@@ -1,5 +1,6 @@
 
 //import React libraries
+import _ from 'lodash'
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchBox from './components/search_box';     //location of the search_box.js file
@@ -30,15 +31,17 @@ class App extends Component {   //class based
     }
 
     render() {
-    return (
-    <div>
-         <SearchBox onSearchTermChange={(term) => this.videoSearch(term)} /> 
-         <VideoDetail video={this.state.selectedVideo} />
-         <VideoList
-         //the onVideoSelect was passed to VideoList as a property (props) 
-         onVideoSelect = {(selectedVideo) => this.setState({selectedVideo:selectedVideo})}
-         videos={this.state.videos} />
-    </div>);
+        const videoSearch = _.debounce((term) => {this.videoSearch(term)},300)
+        //call the function 1 in every 300 ms
+        return (
+        <div>
+            <SearchBox onSearchTermChange={videoSearch} /> 
+            <VideoDetail video={this.state.selectedVideo} />
+            <VideoList
+            //the onVideoSelect was passed to VideoList as a property (props) 
+            onVideoSelect = {(selectedVideo) => this.setState({selectedVideo:selectedVideo})}
+            videos={this.state.videos} />
+        </div>);
     }
 }
 
